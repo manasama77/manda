@@ -61,20 +61,17 @@ class Auth extends CI_Controller
 					}
 					// redirect('user');
 				} else {
-					$this->session->set_flashdata('message', '<div class="alert alert-transparent text-center" role="alert">Wrong Password!
-            </div>');
+					$this->session->set_flashdata('message', 'Wrong Password!');
 					redirect('auth');
 				}
 			} else {
-				$this->session->set_flashdata('message', '<div class="alert alert-transparent text-center" role="alert">This email has not been activated!
-            </div>');
+				$this->session->set_flashdata('message', 'This email has not been activated!');
 				redirect('auth');
 			}
 		} else
 		//jika user tidak ada
 		{
-			$this->session->set_flashdata('message', '<div class="alert alert-transparent text-center" role="alert">Email is not registered !
-            </div>');
+			$this->session->set_flashdata('message', 'Email is not registered !');
 			redirect('auth');
 		}
 	}
@@ -87,8 +84,7 @@ class Auth extends CI_Controller
 		$this->session->unset_userdata('role_id');
 		$this->session->unset_userdata('name');
 		$this->session->unset_userdata('id_prener');
-		$this->session->set_flashdata('message', '<div class="alert alert-warning text-center" role="alert">You have been logout!
-        </div>');
+		$this->session->set_flashdata('message', 'You have been logout!');
 		redirect('auth');
 	}
 
@@ -116,11 +112,22 @@ class Auth extends CI_Controller
 
 	public function store_prener()
 	{
-		$id_prener = $this->input->post('id_prener');
+		$id_prener     = $this->input->post('id_prener');
+		$user_telegram = $this->input->post('user_telegram');
+		$id_telegram   = $this->input->post('id_telegram');
+		$no_hp         = $this->input->post('no_hp');
 
-		$exec = $this->user_model->store_prener($this->session->userdata('id'), $id_prener);
+		$data = [
+			'id_prener'     => $id_prener,
+			'user_telegram' => $user_telegram,
+			'id_telegram'   => $id_telegram,
+			'no_hp'         => $no_hp,
+		];
+
+		$exec = $this->user_model->store_prener($this->session->userdata('id'), $data);
 
 		if ($exec) {
+			$this->session->set_userdata('id_prener', $id_prener);
 			if ($this->session->userdata('role_id') <= 1) {
 				redirect('admin');
 			} else {
