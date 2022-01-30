@@ -11,6 +11,7 @@
 	<div class="row">
 		<div class="col-12">
 			<h5 class="text-white">IDENTITAS</h5>
+			<div id="jam" class="text-white"></div>
 		</div>
 		<div class="col-lg-4 col-sm-12">
 			<table class="table table-bordered text-white small">
@@ -20,8 +21,8 @@
 						<th><?= $user['name']; ?></th>
 					</tr>
 					<tr>
-						<th>PERNER</th>
-						<th><?= $user['id_perner']; ?></th>
+						<th>PRENER</th>
+						<th><?= $user['id_prener']; ?></th>
 					</tr>
 					<tr>
 						<th>USER TELEGRAM</th>

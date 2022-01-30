@@ -21,8 +21,8 @@
 						<th><?= $user['name']; ?></th>
 					</tr>
 					<tr>
-						<th>PERNER</th>
-						<th><?= $user['id_perner']; ?></th>
+						<th>PRENER</th>
+						<th><?= $user['id_prener']; ?></th>
 					</tr>
 					<tr>
 						<th>USER TELEGRAM</th>

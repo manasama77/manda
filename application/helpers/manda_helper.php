@@ -3,9 +3,9 @@
 function is_logged_in()
 {
 	$ci = get_instance();
-	if (!$ci->session->userdata('email') || !$ci->session->userdata('id_perner') || !$ci->session->userdata('name')) {
+	if (!$ci->session->userdata('email') || !$ci->session->userdata('id_prener') || !$ci->session->userdata('name')) {
 		redirect('auth/logout');
-	} elseif ($ci->session->userdata('id_perner') == null) {
+	} elseif ($ci->session->userdata('id_prener') == null) {
 		redirect('auth/logout');
 	} else {
 		$role_id = $ci->session->userdata('role_id');
