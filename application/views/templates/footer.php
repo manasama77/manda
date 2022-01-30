@@ -60,6 +60,12 @@
   	let baseurl = "<?php print base_url(); ?>";
   </script>
   <script src="<?= base_url('assets/') ?>js/form-function.js"></script>
+
+  <!-- select2 -->
+  <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.11.2/umd/popper.min.js"></script>
+
+
   <script>
   	$('.form-check-input').on('click', function() {
   		const menuId = $(this).data('menu')
@@ -80,7 +86,10 @@
   	});
 
   	$(document).ready(function() {
-  		startTime()
+  		$('.select2').select2({
+  			dropdownAutoWidth: true,
+  			theme: 'bootstrap4'
+  		});
   	})
 
   	function startTime() {
