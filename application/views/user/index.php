@@ -10,7 +10,7 @@
 	<?php error_reporting(0); ?>
 	<div class="row">
 		<div class="col-12">
-			<h5 class="text-white">IDENTITAS</h5>
+			<h5 class="text-white">IDENTITASAAA</h5>
 		</div>
 		<div class="col-lg-4 col-sm-12">
 			<table class="table table-bordered text-white small">
