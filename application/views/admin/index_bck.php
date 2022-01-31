@@ -11,8 +11,8 @@
 									<div class="row no-gutters align-items-center">
 										<div class="col mr-2">
 											<div class="text-xs font-weight-bold text-white text-uppercase mb-1">
-												Dailys</div>
-											<div class="h5 mb-0 font-weight-bold text-white"><?= $total_data_daily; ?></div>
+												Daily</div>
+											<div class="h5 mb-0 font-weight-bold text-white"><?= $distmenu; ?></div>
 										</div>
 										<div class="col-auto">
 											<i class="fas fa-list-alt fa-2x text-white"></i>
@@ -27,11 +27,8 @@
 									<div class="row no-gutters align-items-center">
 										<div class="col mr-2">
 											<div class="text-xs font-weight-bold text-white text-uppercase mb-1">
-												Monthly
-											</div>
-											<div class="h5 mb-0 font-weight-bold text-white" id="data_monthly">
-												<i class="fas fa-spinner fa-spin" id="spinner_monthly"></i>
-											</div>
+												Monthly</div>
+											<div class="h5 mb-0 font-weight-bold text-white"><?= $distmmenu; ?></div>
 										</div>
 										<div class="col-auto">
 											<i class="fas fa-calendar-check fa-2x text-white"></i>
@@ -46,11 +43,8 @@
 									<div class="row no-gutters align-items-center">
 										<div class="col mr-2">
 											<div class="text-xs text-left font-weight-bold text-white text-uppercase mb-1">
-												Yearly
-											</div>
-											<div class="h5 mb-0 text-left font-weight-bold text-white" id="data_yearly">
-												<i class="fas fa-spinner fa-spin" id="spinner_monthly"></i>
-											</div>
+												Yearly</div>
+											<div class="h5 mb-0 text-left font-weight-bold text-white"><?= $distymenu; ?></div>
 										</div>
 										<div class="col-auto">
 											<i class="fas fa-chart-bar fa-2x text-white"></i>
@@ -76,7 +70,7 @@
 										<div class="col mr-2">
 											<div class="text-xs font-weight-bold text-white text-uppercase mb-1">
 												Valid</div>
-											<div class="h5 mb-0 font-weight-bold text-white"><?= $total_data_daily_valid; ?></div>
+											<div class="h5 mb-0 font-weight-bold text-white"><?= $valmenu; ?></div>
 										</div>
 										<div class="col-auto">
 											<i class="fas fas fa-user-check fa-2x text-white"></i>
@@ -92,7 +86,7 @@
 										<div class="col mr-2">
 											<div class="text-xs font-weight-bold text-white text-uppercase mb-1">
 												Invalid</div>
-											<div class="h5 mb-0 font-weight-bold text-white"><?= $total_data_daily_invalid ?></div>
+											<div class="h5 mb-0 font-weight-bold text-white"><?= $distmenu - $valmenu ?></div>
 										</div>
 										<div class="col-auto">
 											<i class="fas fa-user-times fa-2x text-white"></i>
@@ -102,7 +96,10 @@
 							</div>
 						</div>
 					</div>
+
+
 				</div>
+
 			</div>
 		</div>
 		<div class="col-lg-2">
@@ -163,9 +160,13 @@
 					<input class="btn btn-outline-primary form-control " value="Search" id="filter" name="filter" href="" type="submit"> </input>
 				</div>
 			</div>
+
+
+
 			<br>
 			<div class="row">
 				<?php error_reporting(0); ?>
+
 				<table class="table table-striped table-dark mx-3 mr-3">
 					<thead>
 						<tr class="bg-warning text-dark">
@@ -177,23 +178,66 @@
 						</tr>
 					</thead>
 					<tbody>
-						<?php for ($i = 1; $i <= 7; $i++) { ?>
-							<tr>
-								<th scope="row"><?= $i; ?></th>
-								<td>Treg-<?= $i; ?></td>
-								<td class="text-light"><?= ${'treg_' . $i . '_valid'}; ?> / <?= ${'treg_' . $i . '_valid_percent'}; ?> %</td>
-								<td class="text-light"><?= ${'treg_' . $i . '_invalid'}; ?> / <?= ${'treg_' . $i . '_invalid_percent'}; ?> %</td>
-								<td><a href="<?= base_url('admin/treg' . $i); ?>" class="text-light"><?= ${'treg_' . $i . '_all'}; ?></a></td>
-							</tr>
-						<?php } ?>
+						<tr>
+							<th scope="row">1</th>
+							<td>Treg-1</td>
+							<td class="text-light"><?= $treg1; ?> / <?= ($treg1 == 0 || $treg1all) ? 0 : round(($treg1 / $treg1all) * 100, 1); ?> %</td>
+							<td class="text-light"><?= $treg1all - $treg1 ?> / <?= round((($treg1all - $treg1) / $treg1all) * 100, 1) ?> %</td>
+							<td><a href="<?= base_url('admin/treg1'); ?>" class="text-light"><?= $treg1all; ?></a></td>
+						</tr>
+						<tr>
+							<th scope="row">2</th>
+							<td>Treg-2</td>
+							<td class="text-light"><?= $treg2; ?> / <?= round(($treg2 / $treg2all) * 100, 1); ?> %</td>
+							<td class="text-light"><?= $treg2all - $treg2 ?> / <?= round((($treg2all - $treg2) / $treg2all) * 100, 1) ?> %</td>
+							<td><a href="<?= base_url('admin/treg2'); ?>" class="text-light"><?= $treg2all; ?></a></td>
 
+						</tr>
+						<tr>
+							<th scope="row">3</th>
+							<td>Treg-3</td>
+							<td class="text-light"><?= $treg3; ?> / <?= round(($treg3 / $treg3all) * 100, 1); ?> %</td>
+							<td class="text-light"><?= $treg3all - $treg3 ?> / <?= round((($treg3all - $treg3) / $treg3all) * 100, 1) ?> %</td>
+							<td><a href="<?= base_url('admin/treg3'); ?>" class="text-light"><?= $treg3all; ?></a></td>
+
+						</tr>
+						<tr>
+							<th scope="row">4</th>
+							<td>Treg-4</td>
+							<td class="text-light"><?= $treg4; ?> / <?= round(($treg4 / $treg4all) * 100, 1); ?> %</td>
+							<td class="text-light"><?= $treg4all - $treg4 ?> / <?= round((($treg4all - $treg4) / $treg4all) * 100, 1) ?> %</td>
+							<td><a href="<?= base_url('admin/treg4'); ?>" class="text-light"><?= $treg4all; ?></a></td>
+						</tr>
+						<tr>
+							<th scope="row">5</th>
+							<td>Treg-5</td>
+							<td class="text-light"><?= $treg5; ?> / <?= round(($treg5 / $treg5all) * 100, 1); ?> %</td>
+							<td class="text-light"><?= $treg5all - $treg5 ?> / <?= round((($treg5all - $treg5) / $treg5all) * 100, 1) ?> %</td>
+							<td><a href="<?= base_url('admin/treg5'); ?>" class="text-light"><?= $treg5all; ?></a></td>
+						</tr>
+						<tr>
+							<th scope="row">6</th>
+							<td>Treg-6</td>
+							<td class="text-light"><?= $treg6; ?> / <?= round(($treg6 / $treg6all) * 100, 1); ?> %</td>
+							<td class="text-light"><?= $treg6all - $treg6 ?> / <?= round((($treg6all - $treg6) / $treg6all) * 100, 1) ?> %</td>
+							<td><a href="<?= base_url('admin/treg6'); ?>" class="text-light"><?= $treg6all; ?></a></td>
+						</tr>
+						<tr>
+							<th scope="row">7</th>
+							<td>Treg-7</td>
+							<td class="text-light"><?= $treg7; ?> / <?= round(($treg7 / $treg7all) * 100, 1); ?> %</td>
+							<td class="text-light"><?= $treg7all - $treg7 ?> / <?= round((($treg7all - $treg7) / $treg7all) * 100, 1) ?> %</td>
+							<td><a href="<?= base_url('admin/treg7'); ?>" class="text-light"><?= $treg7all; ?></a></td>
+						</tr>
 						<tr class="bg-warning text-dark font-weight-bold">
 							<th scope="row"></th>
 							<td>Total</td>
-							<td><?= $total_data_daily_valid; ?> / <?= $percent_data_daily_valid; ?> %</td>
-							<td><?= ($total_data_daily_invalid); ?> / <?= $percent_data_daily_invalid; ?> %</td>
-							<td><?= $total_data_daily; ?></td>
+							<td><?= $valmenu; ?> / <?= round(($valmenu / $distmenu) * 100, 1); ?> %</td>
+							<td><?= ($distmenu - $valmenu); ?> / <?= round((($distmenu - $valmenu) / $distmenu) * 100, 1); ?> %</td>
+							<td><?= $distmenu; ?></td>
+
 						</tr>
+
 					</tbody>
 				</table>
 			</div>

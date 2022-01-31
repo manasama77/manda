@@ -1,0 +1,18 @@
+file yang diedit
+
+.gitignore
+.htaccess
+application/controllers/Auth.php
+application/controllers/User.php
+application/helpers/manda_helper.php
+application/models/Form_data_model.php
+application/models/User_model.php
+application/views/auth/login.php
+application/views/form_prener.php
+application/views/user/index.php
+application/views/user/index_vitamin.php
+application/controllers/Form.php
+application/views/form/index_vitamin.php
+application/views/templates/footer.php
+application/views/templates/header.php
+application/views/user/index_bck.php

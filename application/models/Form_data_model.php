@@ -92,6 +92,110 @@ class Form_data_model extends CI_Model
 		return $this->db->count_all_results($table_name);
 	}
 
+	public function count_trackid_yearly($year)
+	{
+		$this->db->distinct();
+		$this->db->select('trackid');
+		$this->db->where('year(date)', $year);
+		return $this->db->count_all_results('form_data');
+	}
+
+	public function count_trackid_montly($year, $month)
+	{
+		$this->db->distinct();
+		$this->db->select('trackid');
+		$this->db->where('year(date)', $year);
+		$this->db->where('month(date)', $month);
+		return $this->db->count_all_results('form_data');
+	}
+
+	public function count_trackid_daily($date)
+	{
+		$this->db->distinct();
+		$this->db->select('date, trackid');
+		$this->db->where('date', $date);
+		return $this->db->count_all_results('form_data');
+	}
+
+	public function count_trackid_daily_valid($date)
+	{
+		$this->db->distinct();
+		$this->db->select('trackid');
+		$this->db->where('date', $date);
+		$this->db->where('validation', 'Valid');
+		return $this->db->count_all_results('form_data');
+	}
+
+	public function get_trackid_daily($date)
+	{
+		$this->db->select('trackid, validation, regional, name, time');
+		$this->db->where('date', $date);
+		$this->db->order_by('trackid', 'asc');
+		return $this->db->get('form_data')->result_array();
+	}
+
+	public function count_trackid_valid($data, $regional)
+	{
+		$i = 0;
+		$filter_data = [];
+		foreach ($data as $key) {
+			if ($key['validation'] == "Valid" && $key['regional'] == $regional) {
+				$filter_data[$i]['trackid']    = $key['trackid'];
+				$filter_data[$i]['validation'] = $key['validation'];
+				$filter_data[$i]['regional']   = $key['regional'];
+				$i++;
+			}
+		}
+
+		$final_data = array_map("unserialize", array_unique(array_map("serialize", $filter_data)));
+		return count($final_data);
+	}
+
+	public function count_trackid_all($data, $regional)
+	{
+		$i = 0;
+		$filter_data = [];
+		foreach ($data as $key) {
+			if ($key['regional'] == $regional) {
+				$filter_data[$i]['trackid']    = $key['trackid'];
+				$filter_data[$i]['validation'] = $key['validation'];
+				$filter_data[$i]['regional']   = $key['regional'];
+				$i++;
+			}
+		}
+
+		$final_data = array_map("unserialize", array_unique(array_map("serialize", $filter_data)));
+		return count($final_data);
+	}
+
+	public function count_date_based_range_time($data, $from, $to)
+	{
+		$i = 0;
+		$filter_data = [];
+		foreach ($data as $key) {
+			if ($key['time'] >= $from && $key['time'] < $to) {
+				$i++;
+			}
+		}
+
+		return $i;
+	}
+
+	public function count_ao_based_range_time($data, $from, $to)
+	{
+		$i = 0;
+		$filter_data = [];
+		foreach ($data as $key) {
+			if ($key['time'] >= $from && $key['time'] < $to) {
+				$filter_data[$i]['name'] = $key['name'];
+				$i++;
+			}
+		}
+
+		$final_data = array_map("unserialize", array_unique(array_map("serialize", $filter_data)));
+		return count($final_data);
+	}
+
 	private function __set_table_name($tipe)
 	{
 		if ($tipe == "qc_1") {
